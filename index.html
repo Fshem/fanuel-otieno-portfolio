@@ -270,7 +270,7 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
           <li><b>Machine learning:</b> an isolation-forest anomaly score for every interview, near-copy detection, and how far each enumerator's answers sit from everyone else's.</li>
           <li><b>LLM review (optional):</b> uses Anthropic's Claude models (Claude Haiku or Claude Sonnet, through the Claude API with the user's own key) to suggest recodes for other-specify answers and write plain-language briefings for supervisors, with a person confirming every suggestion.</li>
           <li><b>How it was tested:</b> on a 917-interview sample survey, one enumerator's interviews were modified so 12 copied one set of answers and were rushed (a quarter of normal length). All 12 were flagged and the enumerator ranked first for unusual answers. On the unmodified data, 1.4% of original interviews were flagged (the top 5% by anomaly score above 0.55, plus near-identical copies). This shows performance on one type of fabrication, not every type.</li>
-          <li><b>Limitation:</b> the LLM review has not yet been scored against a hand-coded set of answers, so its suggestions are treated as a first pass for a person to confirm.</li>
+          <li><b>Evaluating the LLM review:</b> the tool includes a blind evaluation. A person codes the answers without seeing the AI's suggestions, and the tool reports agreement, Cohen's kappa and every disagreement. Until a coded sample is complete, its suggestions are treated as a first pass for a person to confirm.</li>
         </ul>
         <div class="contact-row">
           <a class="btn primary" href="https://fshem.github.io/hfc-toolkit/" target="_blank" rel="noopener">Open HFC Checker</a>
@@ -377,7 +377,7 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
       <article class="case">
         <div class="case-top"><span class="org">HFC Checker</span><span class="pill ok">Live</span></div>
         <h3>LLM review of survey answers</h3>
-        <p>Uses Anthropic's Claude models (Claude Haiku for speed, Claude Sonnet for harder cases) through the Claude API to suggest whether each "other, specify" answer belongs to an existing choice, is a genuine new category, or is not a real answer, including answers in Swahili and other local languages, and to draft follow-up briefings for supervisors. The API call runs from the browser with the user's own key, and a person confirms every suggestion. Not yet evaluated against a hand-coded set.</p>
+        <p>Uses Anthropic's Claude models (Claude Haiku for speed, Claude Sonnet for harder cases) through the Claude API to suggest whether each "other, specify" answer belongs to an existing choice, is a genuine new category, or is not a real answer, including answers in Swahili and other local languages, and to draft follow-up briefings for supervisors. The API call runs from the browser with the user's own key, and a person confirms every suggestion. A built-in blind evaluation measures agreement with a human coder (Cohen's kappa); results will be added once a coded sample is complete.</p>
         <div class="tags"><span>Claude API</span><span>Claude Haiku / Sonnet</span><span>Human review</span></div>
       </article>
       <article class="case">
