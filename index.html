@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Fanuel Otieno: data quality, analytics, data science and AI work for survey and field data in Africa.">
+<meta property="og:title" content="Fanuel Otieno">
+<meta property="og:description" content="Data quality, analytics and data science leader. Try HFC Checker, a browser-based survey quality tool.">
+<style>html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+<title>Fanuel Otieno</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a field-QC ledger. Narrow reading column for the story, wide working surface for the live engine. */
+:root {
+  --bg: #F3F6F3;
+  --surface: #FFFFFF;
+  --ink: #15211C;
+  --muted: #5A6962;
+  --line: #D6DFD9;
+  --accent: #1E6B52;
+  --accent-soft: #E2EEE8;
+  --flag: #A86A12;
+  --flag-soft: #F7ECD9;
+  --crit: #B23A2E;
+  --crit-soft: #F6E0DD;
+  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --r: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E1613; --surface: #15201C; --ink: #E5ECE8; --muted: #94A39C; --line: #2A3933;
+    --accent: #5FC79E; --accent-soft: #1A3129; --flag: #E2A84E; --flag-soft: #3A2C14;
+    --crit: #EE7D6E; --crit-soft: #3D1F1B; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E1613; --surface: #15201C; --ink: #E5ECE8; --muted: #94A39C; --line: #2A3933;
+  --accent: #5FC79E; --accent-soft: #1A3129; --flag: #E2A84E; --flag-soft: #3A2C14;
+  --crit: #EE7D6E; --crit-soft: #3D1F1B; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 16px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 1100px; margin: 0 auto; padding-block: 48px 64px; display: grid; gap: 72px; }
+h1, h2, h3 { font-family: var(--f-display); line-height: 1.12; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(2.4rem, 6vw, 3.8rem); font-weight: 700; letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.6rem, 3.4vw, 2.2rem); font-weight: 700; letter-spacing: -0.01em; }
+h3 { font-size: 1.12rem; font-weight: 700; }
+p { margin: 0; }
+.eyebrow { font-family: var(--f-mono); font-size: .76rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+.muted { color: var(--muted); }
+.mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+a { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 40px; align-items: end; }
+.hero-text { display: grid; gap: 18px; min-width: 0; }
+.role { font-family: var(--f-display); font-size: 1.3rem; font-weight: 500; color: var(--muted); }
+.lede { font-size: 1.08rem; max-width: 60ch; }
+.contact-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.ledger { border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
+.ledger-row { display: grid; grid-template-columns: auto 1fr; gap: 4px 16px; padding: 14px 18px; border-bottom: 1px dashed var(--line); align-items: baseline; }
+.ledger-row:last-child { border-bottom: 0; }
+.ledger-num { font-family: var(--f-display); font-weight: 700; font-size: 1.9rem; color: var(--accent); font-variant-numeric: tabular-nums; min-width: 5.2ch; }
+.ledger-lbl { font-size: .92rem; }
+.ledger-lbl small { display: block; color: var(--muted); font-size: .8rem; }
+
+.btn { font: 500 .92rem var(--f-body); border: 1px solid var(--line); background: var(--surface); color: var(--ink); padding: 8px 14px; border-radius: 8px; cursor: pointer; }
+.btn:hover { border-color: var(--accent); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn.small { padding: 5px 10px; font-size: .84rem; }
+.chip { font-family: var(--f-mono); font-size: .86rem; border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; background: var(--surface); user-select: all; }
+
+/* Section heads */
+.sec-head { display: grid; gap: 10px; max-width: 70ch; }
+
+/* Demo */
+.demo { display: grid; gap: 22px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 20px; min-width: 0; }
+.controls { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)) auto; gap: 18px; align-items: end; }
+.ctl { display: grid; gap: 6px; min-width: 0; }
+.ctl label { font-size: .82rem; color: var(--muted); display: flex; justify-content: space-between; gap: 8px; }
+.ctl output { font-family: var(--f-mono); color: var(--ink); }
+input[type=range] { width: 100%; accent-color: var(--accent); }
+.ctl-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.tiles { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+.tile { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 14px 16px; display: grid; gap: 4px; min-width: 0; }
+.tile .v { font-family: var(--f-display); font-weight: 700; font-size: 1.75rem; font-variant-numeric: tabular-nums; }
+.tile .k { font-size: .82rem; color: var(--muted); }
+.tile.good .v { color: var(--accent); }
+.tile.warn .v { color: var(--flag); }
+.tile.bad .v { color: var(--crit); }
+
+.grid2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; counter-reset: s; }
+.steps li { display: grid; grid-template-columns: 28px 1fr auto; gap: 10px; padding: 10px 0; border-bottom: 1px dashed var(--line); align-items: baseline; counter-increment: s; }
+.steps li:last-child { border-bottom: 0; }
+.steps li::before { content: counter(s); font-family: var(--f-mono); font-size: .8rem; color: var(--muted); }
+.steps .t { font-weight: 500; }
+.steps .d { display: block; font-size: .84rem; color: var(--muted); }
+.steps .c { font-family: var(--f-mono); font-size: .9rem; text-align: right; white-space: nowrap; }
+.truth { margin-top: 12px; padding: 10px 12px; background: var(--accent-soft); border-radius: 8px; font-size: .88rem; }
+
+.chart-wrap { overflow-x: auto; }
+svg text { fill: var(--muted); font-family: var(--f-mono); font-size: 11px; }
+.legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: .82rem; color: var(--muted); margin-top: 6px; }
+.dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+
+.tbl-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: .88rem; min-width: 640px; }
+th { text-align: left; font-weight: 500; color: var(--muted); font-size: .78rem; letter-spacing: .04em; text-transform: uppercase; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+td { padding: 9px 10px; border-bottom: 1px dashed var(--line); font-variant-numeric: tabular-nums; }
+td.num, th.num { text-align: right; }
+.pill { display: inline-block; font-size: .76rem; font-weight: 600; padding: 2px 9px; border-radius: 999px; white-space: nowrap; }
+.pill.ok { background: var(--accent-soft); color: var(--accent); }
+.pill.warn { background: var(--flag-soft); color: var(--flag); }
+.pill.bad { background: var(--crit-soft); color: var(--crit); }
+.bar { height: 6px; border-radius: 3px; background: var(--line); position: relative; width: 90px; display: inline-block; vertical-align: middle; margin-left: 8px; }
+.bar i { position: absolute; inset: 0 auto 0 0; border-radius: 3px; background: var(--accent); }
+.bar.hot i { background: var(--crit); }
+
+.queue { display: grid; gap: 12px; }
+.qitem { border: 1px solid var(--line); border-radius: 8px; padding: 14px; display: grid; gap: 10px; }
+.qhead { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; align-items: center; }
+.qpair { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 10px; }
+.rec { background: var(--bg); border-radius: 6px; padding: 10px; font-size: .84rem; display: grid; gap: 2px; min-width: 0; overflow-wrap: anywhere; }
+.rec b { font-family: var(--f-body); font-weight: 600; }
+.rec .mono { font-size: .8rem; }
+.qbtns { display: flex; gap: 8px; flex-wrap: wrap; }
+.qdone { font-size: .86rem; color: var(--muted); }
+
+.roadmap { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 24px; margin: 0; padding: 0; list-style: none; }
+.roadmap li { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: start; font-size: .92rem; }
+
+/* Work */
+.work { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.case { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 20px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.case .fig { font-family: var(--f-display); font-weight: 700; font-size: 1.6rem; color: var(--accent); font-variant-numeric: tabular-nums; }
+.case .org { font-family: var(--f-mono); font-size: .76rem; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+.case p { font-size: .92rem; }
+
+.toolkit { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.toolkit div { display: grid; gap: 6px; align-content: start; min-width: 0; }
+.toolkit h3 { font-size: 1rem; }
+.toolkit p { font-size: .9rem; color: var(--muted); }
+
+.area { display: grid; gap: 22px; scroll-margin-top: 72px; }
+.demo { scroll-margin-top: 72px; }
+.jump { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; display: flex; gap: 6px; flex-wrap: wrap; align-items: center; padding: 10px 0; background: var(--bg); border-bottom: 1px solid var(--line); margin-block: -40px -40px; }
+.jump a { line-height: 1.2; font-size: .88rem; font-weight: 500; color: var(--ink); text-decoration: none; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); }
+.jump a:hover { border-color: var(--accent); color: var(--accent); }
+.case-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 4px; }
+.tags span { font-family: var(--f-mono); font-size: .72rem; color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: 2px 7px; }
+.case { grid-template-rows: auto; }
+.calc { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, .8fr); gap: 24px; align-items: center; }
+.calc-text, .calc-ctl, .calc-out { display: grid; gap: 10px; min-width: 0; }
+.calc-out { justify-items: start; }
+.hx-val { font-family: var(--f-display); font-weight: 700; font-size: 2.4rem; line-height: 1; font-variant-numeric: tabular-nums; }
+@media (max-width: 860px) { .calc { grid-template-columns: minmax(0, 1fr); } }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+
+.feature { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 24px; display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 28px; align-items: start; }
+.feature-text { display: grid; gap: 12px; min-width: 0; }
+.feature-h { font-size: 1.6rem; }
+.ticks { margin: 0; padding-left: 1.1rem; display: grid; gap: 6px; font-size: .95rem; }
+.small-note { font-size: .84rem; }
+.btn { text-decoration: none; display: inline-block; }
+@media (max-width: 760px) { .feature { grid-template-columns: minmax(0, 1fr); } }
+
+footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; align-items: center; }
+
+@media (max-width: 960px) {
+  .controls { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .work { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .toolkit { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 720px) {
+  .hero, .grid2 { grid-template-columns: minmax(0, 1fr); }
+  .roadmap { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 520px) {
+  .wrap { padding-block: 28px 48px; gap: 56px; }
+  .controls, .tiles, .work, .toolkit, .qpair { grid-template-columns: minmax(0, 1fr); }
+  .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .steps li { grid-template-columns: 28px minmax(0, 1fr); }
+  .steps .c { grid-column: 2; text-align: left; white-space: normal; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .tile .v, .ledger-num { transition: color .3s; }
+}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="hero-text">
+      <span class="eyebrow">Data quality · Analytics · Data science · AI · Nairobi, Kenya</span>
+      <h1>Fanuel Otieno</h1>
+      <p class="role">Data quality, analytics and data science leader</p>
+      <p class="lede">I build the systems that make large field datasets trustworthy, then turn them into evidence: beneficiary registries, household surveys, routine health data and sensor data across Africa. Ten years of designing quality controls, statistical and machine learning models, and AI-assisted tools, leading the teams that run them, and explaining the results to governments and donors.</p>
+      <div class="contact-row">
+        <span class="chip" id="email">fanuel.otieno88@gmail.com</span>
+        <button class="btn small" id="copyEmail" type="button">Copy email</button>
+        <a class="btn small" id="linkedin" href="#" target="_blank" rel="noopener" hidden>LinkedIn</a>
+        <a class="btn small" href="https://github.com/Fshem" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn small primary" href="https://fshem.github.io/hfc-toolkit/" target="_blank" rel="noopener">Try HFC Checker</a>
+      </div>
+    </div>
+    <div class="ledger" aria-label="Scale of past quality control work">
+      <div class="ledger-row"><span class="ledger-num">500K+</span><span class="ledger-lbl">beneficiary registrations quality-controlled<small>Social protection, Kenya ASAL region</small></span></div>
+      <div class="ledger-row"><span class="ledger-num">2M+</span><span class="ledger-lbl">eCHIS records checked<small>Zero-dose immunization evaluation</small></span></div>
+      <div class="ledger-row"><span class="ledger-num">8h→2h</span><span class="ledger-lbl">daily data checks after automation<small>Universal R QC system, Dalberg Research</small></span></div>
+      <div class="ledger-row"><span class="ledger-num">20+</span><span class="ledger-lbl">countries of survey data processed<small>Including a 6-country study of 11,500 respondents</small></span></div>
+    </div>
+  </header>
+
+  <nav class="jump" aria-label="Portfolio sections">
+    <a href="#projects">Projects</a>
+    <a href="#data-quality">Data quality</a>
+    <a href="#analytics">Data analytics</a>
+    <a href="#data-science">Data science &amp; ML</a>
+    <a href="#ai">AI applications</a>
+    <a href="#training">Training &amp; leadership</a>
+    <a href="#toolkit">Toolkit</a>
+  </nav>
+
+  <section class="area" id="projects" aria-labelledby="pr-h">
+    <div class="sec-head">
+      <span class="eyebrow">Featured projects</span>
+      <h2 id="pr-h">Tools you can open and try</h2>
+    </div>
+    <article class="feature">
+      <div class="feature-text">
+        <div class="case-top"><span class="org">Open source · R · Shiny · webR</span><span class="pill ok">Live</span></div>
+        <h3 class="feature-h">HFC Checker</h3>
+        <p>Upload the survey data your enumerators have submitted so far and get back a prioritised list of problems to follow up today. It runs entirely in the browser, so survey data never leaves your computer.</p>
+        <ul class="ticks">
+          <li><b>Rule-based checks:</b> duplicate IDs, outdated form versions, repeated GPS or phone values, missingness, outliers, constraint and logic violations, other-specify answers.</li>
+          <li><b>Machine learning:</b> an isolation-forest anomaly score for every interview, near-copy detection, and how far each enumerator's answers sit from everyone else's.</li>
+          <li><b>LLM review (optional):</b> uses Anthropic's Claude models (Claude Haiku or Claude Sonnet, through the Claude API with the user's own key) to suggest recodes for other-specify answers and write plain-language briefings for supervisors, with a person confirming every suggestion.</li>
+          <li><b>Tested:</b> every planted fabricated interview was caught, with about 1–4% of real interviews flagged.</li>
+        </ul>
+        <div class="contact-row">
+          <a class="btn primary" href="https://fshem.github.io/hfc-toolkit/" target="_blank" rel="noopener">Open HFC Checker</a>
+          <a class="btn" href="https://github.com/Fshem/hfc-toolkit" target="_blank" rel="noopener">Code on GitHub</a>
+        </div>
+        <p class="muted small-note">Takes about 30 seconds to start while R loads in the browser. A sample survey is built in.</p>
+      </div>
+      <div class="feature-side">
+        <div class="ledger">
+          <div class="ledger-row"><span class="ledger-num">19</span><span class="ledger-lbl">check functions<small>R package with tests</small></span></div>
+          <div class="ledger-row"><span class="ledger-num">0</span><span class="ledger-lbl">servers<small>Runs in the browser with webR</small></span></div>
+          <div class="ledger-row"><span class="ledger-num">3</span><span class="ledger-lbl">layers of checks<small>Rules, machine learning, LLM review</small></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="feature">
+      <div class="feature-text">
+        <div class="case-top"><span class="org">R Shiny · private repository</span><span class="pill ok">Code walkthrough on request</span></div>
+        <h3 class="feature-h">Survey QC Dashboard</h3>
+        <p>A secure dashboard where field managers and clients follow a household survey while it is in the field: progress against targets by region, urban/rural location and gender, data quality control, key indicators, a coverage map and downloadable PDF reports.</p>
+        <ul class="ticks">
+          <li><b>Quality control:</b> callbacks, field QC logs and their resolution, the questions and enumerators triggering most logs, and error-rate gauges.</li>
+          <li><b>Machine learning QC:</b> isolation-forest anomaly scores, k-means clustering of enumerator profiles, and a cross-validated back-check model that ranks interviews by risk of failing a back-check.</li>
+          <li><b>Built for clients:</b> login with hashed passwords, interactive maps, and R Markdown reports generated on demand.</li>
+        </ul>
+      </div>
+      <div class="feature-side">
+        <div class="ledger">
+          <div class="ledger-row"><span class="ledger-num">8h→2h</span><span class="ledger-lbl">daily data checks<small>After automating QC in R</small></span></div>
+          <div class="ledger-row"><span class="ledger-num">3,340</span><span class="ledger-lbl">interviews in a 20-second ML run<small>Tested on a live survey</small></span></div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="area" id="data-quality" aria-labelledby="dq-h">
+    <div class="sec-head">
+      <span class="eyebrow">Data quality</span>
+      <h2 id="dq-h">Quality systems for field data at scale</h2>
+      <p class="muted">Validation rules, high-frequency checks, back-checks and audits, deduplication and enumerator monitoring, built into pipelines that run as data arrives.</p>
+    </div>
+    <div class="work">
+      <article class="case">
+        <div class="case-top"><span class="org">CHASP Advisory</span><span class="pill ok">Delivered</span></div>
+        <span class="fig">500,000+</span>
+        <h3>Social protection registration</h3>
+        <p>Led quality control for beneficiary registration across Kenya's ASAL region: validation, completeness and consistency checks, back-checks, and daily issue resolution with field teams.</p>
+        <div class="tags"><span>Validation rules</span><span>Back-checks</span><span>Field QC</span></div>
+      </article>
+      <article class="case">
+        <div class="case-top"><span class="org">CHASP Advisory</span><span class="pill ok">Ongoing</span></div>
+        <span class="fig">2M+ records</span>
+        <h3>eCHIS data for a zero-dose evaluation</h3>
+        <p>Quality control of community health data for a UNICEF, ELMA and Gavi-funded immunization evaluation. Matched facilities between the master list and KHIS, sending uncertain matches to programme teams instead of guessing.</p>
+        <div class="tags"><span>eCHIS</span><span>KHIS</span><span>Record matching</span></div>
+      </article>
+      <article class="case">
+        <div class="case-top"><span class="org">Dalberg Research</span><span class="pill ok">In production</span></div>
+        <span class="fig">8h → 2h</span>
+        <h3>Universal QC system and R Shiny monitor</h3>
+        <p>A reusable R system that checked every incoming interview each day and fed an R Shiny dashboard where clients tracked quality issues live. Since extended with machine learning (see Survey QC Dashboard above).</p>
+        <div class="tags"><span>R</span><span>Shiny</span><span>Automation</span></div>
+      </article>
+    </div>
+  </section>
+
+
+  <section class="area" id="analytics" aria-labelledby="an-h">
+    <div class="sec-head">
+      <span class="eyebrow">Data analytics</span>
+      <h2 id="an-h">Evidence for programmes and policy</h2>
+      <p class="muted">Survey design, analysis plans, dashboards and reports that clients act on, from county teams to UNICEF and USAID programmes.</p>
+    </div>
+    <div class="work">
+      <article class="case">
+        <div class="case-top"><span class="org">CHASP Advisory · UNICEF Kenya</span><span class="pill ok">Delivered</span></div>
+        <h3>Post-distribution monitoring of a disability cash and care pilot</h3>
+        <p>Designed the integrated household questionnaire and analysis plan, cleaned field data with a full cleaning log, and produced separate cash and non-cash reports across rounds, with Wilson confidence intervals and cross-cycle comparisons.</p>
+        <div class="tags"><span>Survey design</span><span>Analysis plans</span><span>Open-text coding</span></div>
+      </article>
+      <article class="case">
+        <div class="case-top"><span class="org">Dalberg Research</span><span class="pill ok">Delivered</span></div>
+        <h3>Six-country financial inclusion study</h3>
+        <p>Managed data quality and analysis for 11,500 respondents across Nigeria, Kenya, Tanzania, Myanmar, India and Pakistan.</p>
+        <div class="tags"><span>Multi-country surveys</span><span>Data quality</span><span>Comparative analysis</span></div>
+      </article>
+      <article class="case">
+        <div class="case-top"><span class="org">ACDI/VOCA · USAID RLA</span><span class="pill ok">Delivered</span></div>
+        <h3>Resilience and livestock analytics</h3>
+        <p>Technical lead for data analytics in the Horn of Africa: livestock, crop, pasture and market data turned into dashboards and decision tools for county governments, NDMA and IGAD.</p>
+        <div class="tags"><span>Power BI</span><span>Resilience measurement</span><span>Decision support</span></div>
+      </article>
+      <article class="case">
+        <div class="case-top"><span class="org">CHASP Advisory</span><span class="pill ok">Ongoing</span></div>
+        <h3>Shelter insecurity among older persons</h3>
+        <p>Led the research design for a mixed-methods study across 13 Kenyan counties: inception report, household questionnaire, KII and FGD guides, and the briefing for the Directorate of Social Protection.</p>
+        <div class="tags"><span>Mixed methods</span><span>Sampling</span><span>Government briefing</span></div>
+      </article>
+      <article class="case">
+        <div class="case-top"><span class="org">CHASP Advisory</span><span class="pill ok">Delivered</span></div>
+        <h3>Performance dashboards for county health teams</h3>
+        <p>Automated pipelines from KoboToolbox, SurveyCTO and DHIS2 into Power BI and Looker Studio dashboards used by county governments, implementing partners and donors.</p>
+        <div class="tags"><span>DHIS2</span><span>Power BI</span><span>Looker Studio</span></div>
+      </article>
+      <article class="case">
+        <div class="case-top"><span class="org">Infotrak Research</span><span class="pill ok">Delivered</span></div>
+        <h3>Nationwide survey operations</h3>
+        <p>Ran national surveys from questionnaire design to verification, and introduced R as the company's core tool for statistical modelling.</p>
+        <div class="tags"><span>R</span><span>SPSS</span><span>Field operations</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="area" id="data-science" aria-labelledby="ds-h">
+    <div class="sec-head">
+      <span class="eyebrow">Data science &amp; machine learning</span>
+      <h2 id="ds-h">Models built for real decisions</h2>
+      <p class="muted">Predictive models, causal designs and time series work on messy, real-world African data.</p>
+    </div>
+    <div class="work">
+      <article class="case">
+        <div class="case-top"><span class="org">Dalberg Research · Tulaa</span><span class="pill ok">In production</span></div>
+        <h3>Credit scoring for smallholder farmers</h3>
+        <p>Designed and deployed a credit scoring model combining psychometric, behavioural and financial history data, with automated real-time scoring in R served through the lender's platform.</p>
+        <div class="tags"><span>Classification</span><span>Credit risk</span><span>Model deployment</span></div>
+      </article>
+      <article class="case">
+        <div class="case-top"><span class="org">CHASP Advisory</span><span class="pill ok">Ongoing</span></div>
+        <h3>Controlled interrupted time series for immunization</h3>
+        <p>Evaluating an immunization intensification strategy with KHIS monthly data, comparing four intervention counties with matched control counties chosen on urbanisation.</p>
+        <div class="tags"><span>Causal inference</span><span>CITS</span><span>Matched controls</span></div>
+      </article>
+      <article class="case">
+        <div class="case-top"><span class="org">Research</span><span class="pill ok">Ongoing</span></div>
+        <h3>Seasonality of maternal mortality and climate</h3>
+        <p>Thesis research across 10 Kenyan counties linking 2013 to 2025 maternal deaths from KHIS with temperature, humidity and heat-index series, testing whether deaths cluster among the youngest and oldest mothers.</p>
+        <div class="tags"><span>Time series</span><span>Seasonality</span><span>Climate data</span></div>
+      </article>
+      <article class="case">
+        <div class="case-top"><span class="org">Research · Kitui</span></div>
+        <h3>Heat stress from sensor loggers</h3>
+        <p>Processed four months of 30-minute readings from 20 iButton temperature and humidity loggers in Kitui and computed humidex with the Environment Canada dew-point method. Try the calculation below.</p>
+        <div class="tags"><span>Sensor data</span><span>Humidex</span><span>Environmental health</span></div>
+      </article>
+      <article class="case">
+        <div class="case-top"><span class="org">CHASP Advisory</span><span class="pill ok">Delivered</span></div>
+        <h3>Segmentation and risk stratification</h3>
+        <p>Predictive models, segmentation tools and geospatial analyses that help county health teams target supervision and resources.</p>
+        <div class="tags"><span>scikit-learn</span><span>Clustering</span><span>Geospatial</span></div>
+      </article>
+      <article class="case">
+        <div class="case-top"><span class="org">African Maths Initiative</span><span class="pill ok">Delivered</span></div>
+        <h3>Climate data tools in R</h3>
+        <p>Built object-oriented R tools for manipulating and visualising climate data, used in statistics teaching with the University of Reading.</p>
+        <div class="tags"><span>R packages</span><span>OOP</span><span>Climate</span></div>
+      </article>
+    </div>
+
+    <div class="panel calc" aria-labelledby="hx-h">
+      <div class="calc-text">
+        <h3 id="hx-h">Humidex calculator</h3>
+        <p class="muted">The same method used on the Kitui logger data: dew point from temperature and relative humidity (Magnus), then the Environment Canada humidex formula.</p>
+      </div>
+      <div class="calc-ctl">
+        <div class="ctl"><label for="hxT">Air temperature <output id="oT"></output></label><input type="range" id="hxT" min="15" max="45" step="0.5" value="33"></div>
+        <div class="ctl"><label for="hxH">Relative humidity <output id="oH"></output></label><input type="range" id="hxH" min="10" max="100" step="1" value="55"></div>
+      </div>
+      <div class="calc-out" aria-live="polite">
+        <span class="mono muted" id="hxDew"></span>
+        <span class="hx-val" id="hxVal"></span>
+        <span class="pill" id="hxBand"></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="area" id="ai" aria-labelledby="ai-h">
+    <div class="sec-head">
+      <span class="eyebrow">AI applications</span>
+      <h2 id="ai-h">AI where it earns its place, with people checking the results</h2>
+      <p class="muted">I use AI to automate the slow parts of quality control and analysis, and design each tool so a person reviews anything the model is unsure about.</p>
+    </div>
+    <div class="work">
+      <article class="case">
+        <div class="case-top"><span class="org">HFC Checker</span><span class="pill ok">Live</span></div>
+        <h3>LLM review of survey answers</h3>
+        <p>Uses Anthropic's Claude models (Claude Haiku for speed, Claude Sonnet for harder cases) through the Claude API to suggest whether each "other, specify" answer belongs to an existing choice, is a genuine new category, or is not a real answer, including answers in Swahili and other local languages, and to draft follow-up briefings for supervisors. The API call runs from the browser with the user's own key, and a person confirms every suggestion.</p>
+        <div class="tags"><span>Claude API</span><span>Claude Haiku / Sonnet</span><span>Human review</span></div>
+      </article>
+      <article class="case">
+        <div class="case-top"><span class="org">HFC Checker · Survey QC Dashboard</span><span class="pill ok">Live</span></div>
+        <h3>Machine learning for fabrication detection</h3>
+        <p>Isolation forests score every interview on its overall pattern, near-identical copies are flagged directly, and enumerator profiles are clustered to show who works differently from their peers. Tested by planting fabricated interviews: all were caught.</p>
+        <div class="tags"><span>Isolation forest</span><span>k-means</span><span>Jensen-Shannon</span></div>
+      </article>
+      <article class="case">
+        <div class="case-top"><span class="org">Survey QC Dashboard</span><span class="pill ok">Built</span></div>
+        <h3>Back-check prioritisation model</h3>
+        <p>A cross-validated logistic regression learns which interview features predict a failed back-check and ranks the remaining interviews by risk, so field teams back-check where problems are most likely.</p>
+        <div class="tags"><span>Classification</span><span>Cross-validation</span><span>AUC</span></div>
+      </article>
+      <article class="case">
+        <div class="case-top"><span class="org">Working practice</span><span class="pill ok">Ongoing</span></div>
+        <h3>Verified AI-assisted analysis</h3>
+        <p>Use AI assistants to speed up questionnaire, cleaning and analysis work, then reconcile their outputs against each other and the literature before anything ships. On the Kitui data, comparing two AI-drafted humidex formulas led to choosing the Environment Canada dew-point method.</p>
+        <div class="tags"><span>LLM workflows</span><span>Method validation</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="area" id="training" aria-labelledby="tr-h">
+    <div class="sec-head">
+      <span class="eyebrow">Training &amp; leadership</span>
+      <h2 id="tr-h">Building teams and data skills</h2>
+    </div>
+    <div class="work">
+      <article class="case">
+        <div class="case-top"><span class="org">Leadership</span></div>
+        <h3>Head of Research and Data Intelligence</h3>
+        <p>Lead CHASP Advisory's research and data function. Previously headed Dalberg Research's data processing unit across 20+ countries, and was technical lead for data analytics at ACDI/VOCA.</p>
+      </article>
+      <article class="case">
+        <div class="case-top"><span class="org">AIMS Ghana</span></div>
+        <h3>Storytelling with Data</h3>
+        <p>A five-day virtual course for AIMS students from across Africa, built around reading scripts and a capstone project on a financial-access dataset.</p>
+      </article>
+      <article class="case">
+        <div class="case-top"><span class="org">USAID RLA · county governments</span></div>
+        <h3>Analytics capacity building</h3>
+        <p>Trained county MEL teams and government staff in the Horn of Africa on resilience measurement, dashboard interpretation and using data for supervision and planning.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="area" id="toolkit" aria-labelledby="tk-h">
+    <div class="sec-head">
+      <span class="eyebrow">Toolkit</span>
+      <h2 id="tk-h">How the work gets done</h2>
+    </div>
+    <div class="toolkit">
+      <div><h3>Collection</h3><p>SurveyCTO, ODK, KoboToolbox, Survey Solutions. Validation built into the form: constraints, skip logic, GPS and photo capture.</p></div>
+      <div><h3>Pipelines</h3><p>SQL, Python, R and Stata. DHIS2, eCHIS and KHIS integration. High-frequency checks that run as data arrives.</p></div>
+      <div><h3>Verification</h3><p>Back-check and phone-verification sampling, re-interview audits, record linkage and deduplication, enumerator scorecards.</p></div>
+      <div><h3>Leadership</h3><p>Built and led multi-country data teams. Set quality standards and SOPs. Briefs ministries, county governments, NDMA and IGAD.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <p class="muted">MSc Mathematical Statistics · Nairobi, Kenya</p>
+    <div class="contact-row"><span class="chip">fanuel.otieno88@gmail.com</span></div>
+  </footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var LINKEDIN_URL = ""; // add the LinkedIn profile URL here to show the button
+
+  var li = document.getElementById("linkedin");
+  if (LINKEDIN_URL) { li.href = LINKEDIN_URL; li.hidden = false; }
+  document.getElementById("copyEmail").addEventListener("click", function (e) {
+    var btn = e.currentTarget, txt = "fanuel.otieno88@gmail.com";
+    function done(msg) { btn.textContent = msg; setTimeout(function () { btn.textContent = "Copy email"; }, 1800); }
+    function fallback() {
+      var r = document.createRange(); r.selectNodeContents(document.getElementById("email"));
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); done("Selected, press Ctrl+C");
+    }
+    try { navigator.clipboard.writeText(txt).then(function () { done("Copied"); }, fallback); } catch (err) { fallback(); }
+  });
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* ---------- Humidex (Environment Canada, dew-point route) ---------- */
+  function humidex() {
+    var T = +$("hxT").value, RH = +$("hxH").value;
+    var a = 17.62, b = 243.12, g = Math.log(RH / 100) + a * T / (b + T), Td = b * g / (a - g);
+    var e = 6.11 * Math.exp(5417.753 * (1 / 273.16 - 1 / (273.15 + Td)));
+    var H = T + 0.5555 * (e - 10);
+    $("oT").textContent = T.toFixed(1) + " °C"; $("oH").textContent = RH + "%";
+    $("hxDew").textContent = "dew point " + Td.toFixed(1) + " °C";
+    $("hxVal").textContent = H.toFixed(1);
+    var band = H < 30 ? ["ok", "Little or no discomfort"] : H < 40 ? ["warn", "Some discomfort"] : H < 46 ? ["bad", "Great discomfort, avoid exertion"] : ["bad", "Dangerous, heat stroke possible"];
+    var el = $("hxBand"); el.className = "pill " + band[0]; el.textContent = band[1];
+  }
+  ["hxT", "hxH"].forEach(function (id) { $(id).addEventListener("input", humidex); });
+  humidex();
+})();
+</script>
+
+</body>
+</html>
