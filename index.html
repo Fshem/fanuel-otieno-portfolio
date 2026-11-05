@@ -147,7 +147,7 @@ td.num, th.num { text-align: right; }
 .case .org { font-family: var(--f-mono); font-size: .76rem; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
 .case p { font-size: .92rem; }
 
-.toolkit { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.toolkit { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 18px; }
 .toolkit div { display: grid; gap: 6px; align-content: start; min-width: 0; }
 .toolkit h3 { font-size: 1rem; }
 .toolkit p { font-size: .9rem; color: var(--muted); }
@@ -236,9 +236,9 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
       </div>
     </div>
     <div class="ledger" aria-label="Scale of past quality control work">
-      <div class="ledger-row"><span class="ledger-num">500K+</span><span class="ledger-lbl">beneficiary registrations quality-controlled<small>Social protection, Kenya ASAL region</small></span></div>
       <div class="ledger-row"><span class="ledger-num">2M+</span><span class="ledger-lbl">community health records checked<small>eCHIS (electronic Community Health Information System), 2026</small></span></div>
-      <div class="ledger-row"><span class="ledger-num">8h→2h</span><span class="ledger-lbl">daily data checks after automation<small>Universal R QC system, Dalberg Research (2018–2024)</small></span></div>
+      <div class="ledger-row"><span class="ledger-num">200K+</span><span class="ledger-lbl">beneficiary registrations quality-controlled<small>Social protection, Kenya ASAL region</small></span></div>
+      <div class="ledger-row"><span class="ledger-num">8h→2h</span><span class="ledger-lbl">daily review of field data by data clerks<small>QC dashboard at Dalberg Research (2018–2024)</small></span></div>
       <div class="ledger-row"><span class="ledger-num">60+</span><span class="ledger-lbl">surveys processed across 20+ countries<small>Including a 6-country study of 11,500 respondents</small></span></div>
     </div>
   </header>
@@ -302,7 +302,7 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
       </div>
       <div class="feature-side">
         <div class="ledger">
-          <div class="ledger-row"><span class="ledger-num">8h→2h</span><span class="ledger-lbl">daily data checks<small>After automating QC in R, Dalberg Research</small></span></div>
+          <div class="ledger-row"><span class="ledger-num">8h→2h</span><span class="ledger-lbl">daily data review by data clerks<small>Now confirming the dashboard's output, Dalberg Research</small></span></div>
           <div class="ledger-row"><span class="ledger-num">~20 s</span><span class="ledger-lbl">to score 3,340 interviews<small>ML checks, test run on a completed survey</small></span></div>
         </div>
       </div>
@@ -318,10 +318,10 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
     <div class="work">
       <article class="case">
         <div class="case-top"><span class="org">CHASP Advisory</span><span class="pill ok">Delivered</span></div>
-        <span class="fig">500,000+</span>
+        <span class="fig">200,000+</span>
         <h3>Social protection registration</h3>
-        <p>Led quality control for beneficiary registration across Kenya's ASAL region: validation, completeness and consistency checks, back-checks, and daily issue resolution with field teams.</p>
-        <div class="tags"><span>Validation rules</span><span>Back-checks</span><span>Field QC</span></div>
+        <p>Led quality control for beneficiary registration across Kenya's ASAL region: extracted registration data from the Enhanced Single Registry (ESR) with SQL, ran validation, completeness and consistency checks and back-checks, resolved issues daily with field teams, and shared continuous quality updates with staff of the Social Protection Department.</p>
+        <div class="tags"><span>SQL</span><span>ESR</span><span>Back-checks</span><span>Government reporting</span></div>
       </article>
       <article class="case">
         <div class="case-top"><span class="org">CHASP Advisory</span><span class="pill ok">2026 · ongoing</span></div>
@@ -334,7 +334,7 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
         <div class="case-top"><span class="org">Dalberg Research</span><span class="pill ok">Used 2018–2024</span></div>
         <span class="fig">8h → 2h</span>
         <h3>Universal QC system and R Shiny monitor</h3>
-        <p>A reusable R system that checked every incoming interview each day and fed an R Shiny dashboard where clients tracked quality issues live. Since extended with machine learning (see Survey QC Dashboard above).</p>
+        <p>During fieldwork, data clerks spent about 8 hours a day reviewing incoming data. This reusable R system ran the checks on every interview automatically and fed an R Shiny dashboard, so clerks needed about 2 hours or less to confirm its output. Every flagged interview was confirmed with the enumerator or redone. Since extended with machine learning (see Survey QC Dashboard above).</p>
         <div class="tags"><span>R</span><span>Shiny</span><span>Automation</span></div>
       </article>
     </div>
@@ -467,9 +467,9 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
         <div class="tags"><span>Causal inference</span><span>CITS</span><span>Matched controls</span></div>
       </article>
       <article class="case">
-        <div class="case-top"><span class="org">Thesis research</span><span class="pill ok">In progress</span></div>
+        <div class="case-top"><span class="org">CHASP Advisory · research</span><span class="pill ok">In progress</span></div>
         <h3>Seasonality of maternal mortality and climate</h3>
-        <p>Thesis research across 10 Kenyan counties linking 2013 to 2025 maternal deaths from KHIS with temperature, humidity and heat-index series, testing whether deaths cluster among the youngest and oldest mothers.</p>
+        <p>Research across 10 Kenyan counties linking 2013 to 2025 maternal deaths from KHIS with temperature, humidity and heat-index series, testing whether deaths cluster among the youngest and oldest mothers.</p>
         <div class="tags"><span>Time series</span><span>Seasonality</span><span>Climate data</span></div>
       </article>
       <article class="case">
@@ -517,8 +517,9 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
     </div>
     <div class="toolkit">
       <div><h3>Collection</h3><p>SurveyCTO, ODK, KoboToolbox, Survey Solutions. Validation built into the form: constraints, skip logic, GPS and photo capture.</p></div>
-      <div><h3>Pipelines</h3><p>SQL, Python, R and Stata. DHIS2, eCHIS and KHIS integration. High-frequency checks that run as data arrives.</p></div>
-      <div><h3>Verification</h3><p>Back-check and phone-verification sampling, re-interview audits, record linkage and deduplication, enumerator scorecards.</p></div>
+      <div><h3>Pipelines</h3><p>SQL, Python, R and Stata: for example, SQL extracts from Kenya's Enhanced Single Registry. DHIS2, eCHIS and KHIS integration. High-frequency checks that run as data arrives.</p></div>
+      <div><h3>Verification</h3><p>Back-check and phone-verification sampling, re-interview audits, record linkage and deduplication, enumerator scorecards. Every flagged interview is confirmed with the enumerator or redone.</p></div>
+      <div><h3>Data protection</h3><p>Informed consent, data access limited to the project team, and a data protection policy for each project, in line with Kenya's Data Protection Act 2019.</p></div>
       <div><h3>Leadership</h3><p>Built and led multi-country data teams. Set quality standards and SOPs. Briefs ministries, county governments, NDMA and IGAD.</p></div>
     </div>
   </section>
