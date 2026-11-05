@@ -176,6 +176,20 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .btn { text-decoration: none; display: inline-block; }
 @media (max-width: 760px) { .feature { grid-template-columns: minmax(0, 1fr); } }
 
+.skip { position: absolute; left: -9999px; top: 8px; z-index: 20; background: var(--surface); color: var(--ink); padding: 10px 14px; border-radius: 8px; border: 1px solid var(--line); }
+.skip:focus { left: max(16px, env(safe-area-inset-left, 0px)); }
+main { display: grid; gap: 72px; }
+main:focus { outline: none; }
+.btn, .jump a { min-height: 44px; display: inline-flex; align-items: center; }
+.btn.small { min-height: 40px; }
+.area, .demo { scroll-margin-top: 120px; }
+.flow { font-family: var(--f-mono); font-size: .82rem; color: var(--muted); background: var(--bg); border-radius: 8px; padding: 10px 12px; line-height: 1.7; }
+.flow span { color: var(--accent); padding: 0 2px; }
+.shot { margin: 6px 0 0; display: grid; gap: 6px; }
+.shot img { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 8px; }
+.shot figcaption { font-size: .8rem; color: var(--muted); }
+.closing { display: grid; gap: 10px; max-width: 70ch; }
+.closing h2 { font-size: 1.5rem; }
 footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; align-items: center; }
 
 @media (max-width: 960px) {
@@ -202,6 +216,7 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
 
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <div class="wrap">
 
   <header class="hero">
@@ -211,76 +226,84 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
       <p class="role">Data quality, analytics and data science leader</p>
       <p class="lede">I build the systems that make large field datasets trustworthy, then turn them into evidence: beneficiary registries, household surveys, routine health data and sensor data across Africa. Ten years of designing quality controls, statistical and machine learning models, and AI-assisted tools, leading the teams that run them, and explaining the results to governments and donors.</p>
       <div class="contact-row">
+        <a class="btn primary" href="mailto:fanuel.otieno88@gmail.com">Email me</a>
+        <a class="btn" href="#projects">View selected work</a>
+        <a class="btn" href="https://github.com/Fshem" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <div class="contact-row">
         <span class="chip" id="email">fanuel.otieno88@gmail.com</span>
         <button class="btn small" id="copyEmail" type="button">Copy email</button>
-        <a class="btn small" id="linkedin" href="#" target="_blank" rel="noopener" hidden>LinkedIn</a>
-        <a class="btn small" href="https://github.com/Fshem" target="_blank" rel="noopener">GitHub</a>
-        <a class="btn small primary" href="https://fshem.github.io/hfc-toolkit/" target="_blank" rel="noopener">Try HFC Checker</a>
       </div>
     </div>
     <div class="ledger" aria-label="Scale of past quality control work">
       <div class="ledger-row"><span class="ledger-num">500K+</span><span class="ledger-lbl">beneficiary registrations quality-controlled<small>Social protection, Kenya ASAL region</small></span></div>
-      <div class="ledger-row"><span class="ledger-num">2M+</span><span class="ledger-lbl">eCHIS records checked<small>Zero-dose immunization evaluation</small></span></div>
-      <div class="ledger-row"><span class="ledger-num">8h→2h</span><span class="ledger-lbl">daily data checks after automation<small>Universal R QC system, Dalberg Research</small></span></div>
+      <div class="ledger-row"><span class="ledger-num">2M+</span><span class="ledger-lbl">community health records checked<small>eCHIS (electronic Community Health Information System), 2026</small></span></div>
+      <div class="ledger-row"><span class="ledger-num">8h→2h</span><span class="ledger-lbl">daily data checks after automation<small>Universal R QC system, Dalberg Research (2018–2024)</small></span></div>
       <div class="ledger-row"><span class="ledger-num">60+</span><span class="ledger-lbl">surveys processed across 20+ countries<small>Including a 6-country study of 11,500 respondents</small></span></div>
     </div>
   </header>
 
+  <main id="main" tabindex="-1">
   <nav class="jump" aria-label="Portfolio sections">
-    <a href="#projects">Projects</a>
+    <a href="#projects">Selected projects</a>
     <a href="#data-quality">Data quality</a>
+    <a href="#training">Leadership</a>
+    <a href="#ai">AI applications</a>
     <a href="#analytics">Data analytics</a>
     <a href="#data-science">Data science &amp; ML</a>
-    <a href="#ai">AI applications</a>
-    <a href="#training">Training &amp; leadership</a>
     <a href="#toolkit">Toolkit</a>
   </nav>
 
   <section class="area" id="projects" aria-labelledby="pr-h">
     <div class="sec-head">
-      <span class="eyebrow">Featured projects</span>
-      <h2 id="pr-h">Tools you can open and try</h2>
+      <span class="eyebrow">Selected projects</span>
+      <h2 id="pr-h">Survey quality systems I have built</h2>
     </div>
     <article class="feature">
       <div class="feature-text">
-        <div class="case-top"><span class="org">Open source · R · Shiny · webR</span><span class="pill ok">Live</span></div>
+        <div class="case-top"><span class="org">Open source · R · Shiny · webR</span><span class="pill ok">Live · checked Nov 2026</span></div>
         <h3 class="feature-h">HFC Checker</h3>
-        <p>Upload the survey data your enumerators have submitted so far and get back a prioritised list of problems to follow up today. It runs entirely in the browser, so survey data never leaves your computer.</p>
+        <p>A high-frequency check (HFC) tool: upload the survey data your enumerators have submitted so far and get back a prioritised list of problems to follow up today. The checks run in the browser, so survey data is not uploaded to a server. The optional AI review is the one exception: it sends only the answers it reviews to Anthropic's API, using the user's own key.</p>
+        <p class="flow" aria-label="How the tool works">Upload data <span aria-hidden="true">→</span> match columns <span aria-hidden="true">→</span> rule-based checks <span aria-hidden="true">→</span> ML scoring <span aria-hidden="true">→</span> issues list and enumerator ranking <span aria-hidden="true">→</span> human review <span aria-hidden="true">→</span> Excel report for follow-up</p>
         <ul class="ticks">
           <li><b>Rule-based checks:</b> duplicate IDs, outdated form versions, repeated GPS or phone values, missingness, outliers, constraint and logic violations, other-specify answers.</li>
           <li><b>Machine learning:</b> an isolation-forest anomaly score for every interview, near-copy detection, and how far each enumerator's answers sit from everyone else's.</li>
           <li><b>LLM review (optional):</b> uses Anthropic's Claude models (Claude Haiku or Claude Sonnet, through the Claude API with the user's own key) to suggest recodes for other-specify answers and write plain-language briefings for supervisors, with a person confirming every suggestion.</li>
-          <li><b>Tested:</b> every planted fabricated interview was caught, with about 1–4% of real interviews flagged.</li>
+          <li><b>How it was tested:</b> on a 917-interview sample survey, one enumerator's interviews were modified so 12 copied one set of answers and were rushed (a quarter of normal length). All 12 were flagged and the enumerator ranked first for unusual answers. On the unmodified data, 1.4% of original interviews were flagged (the top 5% by anomaly score above 0.55, plus near-identical copies). This shows performance on one type of fabrication, not every type.</li>
+          <li><b>Limitation:</b> the LLM review has not yet been scored against a hand-coded set of answers, so its suggestions are treated as a first pass for a person to confirm.</li>
         </ul>
         <div class="contact-row">
           <a class="btn primary" href="https://fshem.github.io/hfc-toolkit/" target="_blank" rel="noopener">Open HFC Checker</a>
           <a class="btn" href="https://github.com/Fshem/hfc-toolkit" target="_blank" rel="noopener">Code on GitHub</a>
         </div>
         <p class="muted small-note">Takes about 30 seconds to start while R loads in the browser. A sample survey is built in.</p>
+        <figure class="shot"><img src="images/hfc_issues.jpg" width="1360" height="820" loading="lazy" alt="HFC Checker results on the sample survey: 917 submissions checked, 13 high-priority issues, 1,622 to review, 5 enumerators to follow up, and a table of constraint violations by interview and enumerator."><figcaption>Results on the built-in sample survey.</figcaption></figure>
       </div>
       <div class="feature-side">
         <div class="ledger">
           <div class="ledger-row"><span class="ledger-num">19</span><span class="ledger-lbl">check functions<small>R package with tests</small></span></div>
-          <div class="ledger-row"><span class="ledger-num">0</span><span class="ledger-lbl">servers<small>Runs in the browser with webR</small></span></div>
+          <div class="ledger-row"><span class="ledger-num">No</span><span class="ledger-lbl">application backend<small>Checks run in the browser with webR</small></span></div>
           <div class="ledger-row"><span class="ledger-num">3</span><span class="ledger-lbl">layers of checks<small>Rules, machine learning, LLM review</small></span></div>
         </div>
       </div>
     </article>
     <article class="feature">
       <div class="feature-text">
-        <div class="case-top"><span class="org">R Shiny · private repository</span><span class="pill ok">Code walkthrough on request</span></div>
+        <div class="case-top"><span class="org">R Shiny · private repository</span><span class="pill">Code on request</span></div>
         <h3 class="feature-h">Survey QC Dashboard</h3>
         <p>A secure dashboard where field managers and clients follow a household survey while it is in the field: progress against targets by region, urban/rural location and gender, data quality control, key indicators, a coverage map and downloadable PDF reports.</p>
         <ul class="ticks">
           <li><b>Quality control:</b> callbacks, field QC logs and their resolution, the questions and enumerators triggering most logs, and error-rate gauges.</li>
           <li><b>Machine learning QC:</b> isolation-forest anomaly scores, k-means clustering of enumerator profiles, and a cross-validated back-check model that ranks interviews by risk of failing a back-check.</li>
           <li><b>Built for clients:</b> login with hashed passwords, interactive maps, and R Markdown reports generated on demand.</li>
+          <li><b>How the ML was tested:</b> on a completed survey of 3,340 interviews, 15 interviews by one enumerator were changed to copy one set of answers and cut to 30% of their length; all 15 were flagged and the enumerator was flagged for review. The back-check model was tested on simulated back-check outcomes (cross-validated AUC 0.76, and about 0.5 on random labels, as expected), because that survey had no back-check results.</li>
         </ul>
+        <div class="contact-row"><a class="btn" href="mailto:fanuel.otieno88@gmail.com?subject=Survey%20QC%20Dashboard%20code%20walkthrough">Request a code walkthrough</a></div>
       </div>
       <div class="feature-side">
         <div class="ledger">
-          <div class="ledger-row"><span class="ledger-num">8h→2h</span><span class="ledger-lbl">daily data checks<small>After automating QC in R</small></span></div>
-          <div class="ledger-row"><span class="ledger-num">3,340</span><span class="ledger-lbl">interviews in a 20-second ML run<small>Tested on a live survey</small></span></div>
+          <div class="ledger-row"><span class="ledger-num">8h→2h</span><span class="ledger-lbl">daily data checks<small>After automating QC in R, Dalberg Research</small></span></div>
+          <div class="ledger-row"><span class="ledger-num">~20 s</span><span class="ledger-lbl">to score 3,340 interviews<small>ML checks, test run on a completed survey</small></span></div>
         </div>
       </div>
     </article>
@@ -301,14 +324,14 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
         <div class="tags"><span>Validation rules</span><span>Back-checks</span><span>Field QC</span></div>
       </article>
       <article class="case">
-        <div class="case-top"><span class="org">CHASP Advisory</span><span class="pill ok">Ongoing</span></div>
+        <div class="case-top"><span class="org">CHASP Advisory</span><span class="pill ok">2026 · ongoing</span></div>
         <span class="fig">2M+ records</span>
         <h3>eCHIS data for a zero-dose evaluation</h3>
-        <p>Quality control of community health data for a UNICEF, ELMA and Gavi-funded immunization evaluation. Matched facilities between the master list and KHIS, sending uncertain matches to programme teams instead of guessing.</p>
+        <p>Quality control of community health data for a UNICEF, ELMA and Gavi-funded immunization evaluation. Matched facilities between the master list and KHIS (Kenya Health Information System), sending uncertain matches to programme teams instead of guessing.</p>
         <div class="tags"><span>eCHIS</span><span>KHIS</span><span>Record matching</span></div>
       </article>
       <article class="case">
-        <div class="case-top"><span class="org">Dalberg Research</span><span class="pill ok">In production</span></div>
+        <div class="case-top"><span class="org">Dalberg Research</span><span class="pill ok">Used 2018–2024</span></div>
         <span class="fig">8h → 2h</span>
         <h3>Universal QC system and R Shiny monitor</h3>
         <p>A reusable R system that checked every incoming interview each day and fed an R Shiny dashboard where clients tracked quality issues live. Since extended with machine learning (see Survey QC Dashboard above).</p>
@@ -317,6 +340,66 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
     </div>
   </section>
 
+  <section class="area" id="training" aria-labelledby="tr-h">
+    <div class="sec-head">
+      <span class="eyebrow">Leadership &amp; training</span>
+      <h2 id="tr-h">Leading data teams and building skills</h2>
+    </div>
+    <div class="work">
+      <article class="case">
+        <div class="case-top"><span class="org">Leadership</span></div>
+        <h3>Leading teams of 7 to 16 since 2018</h3>
+        <p>Head of Research and Data Intelligence at CHASP Advisory since 2025, leading 10 analysts, data engineers and field QC staff. Headed Dalberg Research's data processing unit from 2018 to 2024: 16 data scientists, analysts and engineers across 60+ surveys in 20+ countries, covering hiring, work allocation, performance reviews and code review. Technical lead for data analytics at ACDI/VOCA (2024–2025), leading 7 analysts and experts.</p>
+      </article>
+      <article class="case">
+        <div class="case-top"><span class="org">AIMS Ghana</span></div>
+        <h3>Storytelling with Data</h3>
+        <p>A five-day virtual course for AIMS students from across Africa, built around reading scripts and a capstone project on a financial-access dataset.</p>
+      </article>
+      <article class="case">
+        <div class="case-top"><span class="org">USAID RLA · county governments</span></div>
+        <h3>Analytics capacity building</h3>
+        <p>Trained county MEL teams and government staff in the Horn of Africa on resilience measurement, dashboard interpretation and using data for supervision and planning.</p>
+      </article>
+    </div>
+  </section>
+
+
+
+
+  <section class="area" id="ai" aria-labelledby="ai-h">
+    <div class="sec-head">
+      <span class="eyebrow">AI applications</span>
+      <h2 id="ai-h">AI where it earns its place, with people checking the results</h2>
+      <p class="muted">I use AI to automate the slow parts of quality control and analysis, and design each tool so a person reviews anything the model is unsure about.</p>
+    </div>
+    <div class="work">
+      <article class="case">
+        <div class="case-top"><span class="org">HFC Checker</span><span class="pill ok">Live</span></div>
+        <h3>LLM review of survey answers</h3>
+        <p>Uses Anthropic's Claude models (Claude Haiku for speed, Claude Sonnet for harder cases) through the Claude API to suggest whether each "other, specify" answer belongs to an existing choice, is a genuine new category, or is not a real answer, including answers in Swahili and other local languages, and to draft follow-up briefings for supervisors. The API call runs from the browser with the user's own key, and a person confirms every suggestion. Not yet evaluated against a hand-coded set.</p>
+        <div class="tags"><span>Claude API</span><span>Claude Haiku / Sonnet</span><span>Human review</span></div>
+      </article>
+      <article class="case">
+        <div class="case-top"><span class="org">HFC Checker · Survey QC Dashboard</span><span class="pill ok">Live</span></div>
+        <h3>Machine learning for fabrication detection</h3>
+        <p>Isolation forests score every interview on its overall pattern, near-identical copies are flagged directly, and enumerator profiles are clustered to show who works differently from their peers. Tested by planting copied, rushed interviews in two real datasets (12 of 12 and 15 of 15 flagged), with 1–4% of original interviews flagged.</p>
+        <div class="tags"><span>Isolation forest</span><span>k-means</span><span>Jensen-Shannon</span></div>
+      </article>
+      <article class="case">
+        <div class="case-top"><span class="org">Survey QC Dashboard</span><span class="pill ok">Built · simulated test</span></div>
+        <h3>Back-check prioritisation model</h3>
+        <p>A cross-validated logistic regression learns which interview features predict a failed back-check and ranks the remaining interviews by risk, so field teams back-check where problems are most likely. Tested on simulated outcomes; it needs real back-check results before its rankings can be trusted.</p>
+        <div class="tags"><span>Classification</span><span>Cross-validation</span><span>AUC</span></div>
+      </article>
+      <article class="case">
+        <div class="case-top"><span class="org">Working practice</span></div>
+        <h3>AI-assisted analysis, checked against documented methods</h3>
+        <p>I use AI assistants to speed up questionnaire, cleaning and analysis work, and check their output against published methods and reference calculations before it is used. On the Kitui data, an AI-drafted humidex formula used a different vapour-pressure route from the published one, so the values were recomputed with the Environment Canada dew-point method.</p>
+        <div class="tags"><span>LLM workflows</span><span>Method validation</span></div>
+      </article>
+    </div>
+  </section>
 
   <section class="area" id="analytics" aria-labelledby="an-h">
     <div class="sec-head">
@@ -326,7 +409,7 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
     </div>
     <div class="work">
       <article class="case">
-        <div class="case-top"><span class="org">CHASP Advisory · UNICEF Kenya</span><span class="pill ok">Delivered</span></div>
+        <div class="case-top"><span class="org">CHASP Advisory · UNICEF Kenya</span><span class="pill ok">2026</span></div>
         <h3>Post-distribution monitoring of a disability cash and care pilot</h3>
         <p>Designed the integrated household questionnaire and analysis plan, cleaned field data with a full cleaning log, and produced separate cash and non-cash reports across rounds, with Wilson confidence intervals and cross-cycle comparisons.</p>
         <div class="tags"><span>Survey design</span><span>Analysis plans</span><span>Open-text coding</span></div>
@@ -338,7 +421,7 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
         <div class="tags"><span>Multi-country surveys</span><span>Data quality</span><span>Comparative analysis</span></div>
       </article>
       <article class="case">
-        <div class="case-top"><span class="org">ACDI/VOCA · USAID RLA</span><span class="pill ok">Delivered</span></div>
+        <div class="case-top"><span class="org">ACDI/VOCA · USAID RLA</span><span class="pill ok">2024–2025</span></div>
         <h3>Resilience and livestock analytics</h3>
         <p>Technical lead for data analytics in the Horn of Africa: livestock, crop, pasture and market data turned into dashboards and decision tools for county governments, NDMA and IGAD.</p>
         <div class="tags"><span>Power BI</span><span>Resilience measurement</span><span>Decision support</span></div>
@@ -356,7 +439,7 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
         <div class="tags"><span>DHIS2</span><span>Power BI</span><span>Looker Studio</span></div>
       </article>
       <article class="case">
-        <div class="case-top"><span class="org">Infotrak Research</span><span class="pill ok">Delivered</span></div>
+        <div class="case-top"><span class="org">Infotrak Research</span><span class="pill ok">2017–2018</span></div>
         <h3>Nationwide survey operations</h3>
         <p>Ran national surveys from questionnaire design to verification, and introduced R as the company's core tool for statistical modelling.</p>
         <div class="tags"><span>R</span><span>SPSS</span><span>Field operations</span></div>
@@ -372,19 +455,19 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
     </div>
     <div class="work">
       <article class="case">
-        <div class="case-top"><span class="org">Dalberg Research · Tulaa</span><span class="pill ok">In production</span></div>
+        <div class="case-top"><span class="org">Dalberg Research · Tulaa</span><span class="pill ok">Deployed · 15,000+ farmers scored</span></div>
         <h3>Credit scoring for smallholder farmers</h3>
         <p>Designed and deployed a credit scoring model combining psychometric, behavioural and financial history data, with automated real-time scoring in R served through the lender's platform.</p>
         <div class="tags"><span>Classification</span><span>Credit risk</span><span>Model deployment</span></div>
       </article>
       <article class="case">
         <div class="case-top"><span class="org">CHASP Advisory</span><span class="pill ok">Ongoing</span></div>
-        <h3>Controlled interrupted time series for immunization</h3>
+        <h3>Controlled interrupted time series (CITS) for immunization</h3>
         <p>Evaluating an immunization intensification strategy with KHIS monthly data, comparing four intervention counties with matched control counties chosen on urbanisation.</p>
         <div class="tags"><span>Causal inference</span><span>CITS</span><span>Matched controls</span></div>
       </article>
       <article class="case">
-        <div class="case-top"><span class="org">Research</span><span class="pill ok">Ongoing</span></div>
+        <div class="case-top"><span class="org">Thesis research</span><span class="pill ok">In progress</span></div>
         <h3>Seasonality of maternal mortality and climate</h3>
         <p>Thesis research across 10 Kenyan counties linking 2013 to 2025 maternal deaths from KHIS with temperature, humidity and heat-index series, testing whether deaths cluster among the youngest and oldest mothers.</p>
         <div class="tags"><span>Time series</span><span>Seasonality</span><span>Climate data</span></div>
@@ -402,7 +485,7 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
         <div class="tags"><span>scikit-learn</span><span>Clustering</span><span>Geospatial</span></div>
       </article>
       <article class="case">
-        <div class="case-top"><span class="org">African Maths Initiative</span><span class="pill ok">Delivered</span></div>
+        <div class="case-top"><span class="org">African Maths Initiative</span><span class="pill ok">2014–2015</span></div>
         <h3>Climate data tools in R</h3>
         <p>Built object-oriented R tools for manipulating and visualising climate data, used in statistics teaching with the University of Reading.</p>
         <div class="tags"><span>R packages</span><span>OOP</span><span>Climate</span></div>
@@ -412,7 +495,7 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
     <div class="panel calc" aria-labelledby="hx-h">
       <div class="calc-text">
         <h3 id="hx-h">Humidex calculator</h3>
-        <p class="muted">The same method used on the Kitui logger data: dew point from temperature and relative humidity (Magnus), then the Environment Canada humidex formula.</p>
+        <p class="muted">The same method used on the Kitui logger data: dew point from temperature and relative humidity (Magnus formula), then the Environment Canada humidex formula (Masterton and Richardson, 1979). Comfort bands follow Environment Canada: under 30 little discomfort, 30–39 some discomfort, 40–45 great discomfort, 46 and over dangerous.</p>
       </div>
       <div class="calc-ctl">
         <div class="ctl"><label for="hxT">Air temperature <output id="oT"></output></label><input type="range" id="hxT" min="15" max="45" step="0.5" value="33"></div>
@@ -426,63 +509,6 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
     </div>
   </section>
 
-  <section class="area" id="ai" aria-labelledby="ai-h">
-    <div class="sec-head">
-      <span class="eyebrow">AI applications</span>
-      <h2 id="ai-h">AI where it earns its place, with people checking the results</h2>
-      <p class="muted">I use AI to automate the slow parts of quality control and analysis, and design each tool so a person reviews anything the model is unsure about.</p>
-    </div>
-    <div class="work">
-      <article class="case">
-        <div class="case-top"><span class="org">HFC Checker</span><span class="pill ok">Live</span></div>
-        <h3>LLM review of survey answers</h3>
-        <p>Uses Anthropic's Claude models (Claude Haiku for speed, Claude Sonnet for harder cases) through the Claude API to suggest whether each "other, specify" answer belongs to an existing choice, is a genuine new category, or is not a real answer, including answers in Swahili and other local languages, and to draft follow-up briefings for supervisors. The API call runs from the browser with the user's own key, and a person confirms every suggestion.</p>
-        <div class="tags"><span>Claude API</span><span>Claude Haiku / Sonnet</span><span>Human review</span></div>
-      </article>
-      <article class="case">
-        <div class="case-top"><span class="org">HFC Checker · Survey QC Dashboard</span><span class="pill ok">Live</span></div>
-        <h3>Machine learning for fabrication detection</h3>
-        <p>Isolation forests score every interview on its overall pattern, near-identical copies are flagged directly, and enumerator profiles are clustered to show who works differently from their peers. Tested by planting fabricated interviews: all were caught.</p>
-        <div class="tags"><span>Isolation forest</span><span>k-means</span><span>Jensen-Shannon</span></div>
-      </article>
-      <article class="case">
-        <div class="case-top"><span class="org">Survey QC Dashboard</span><span class="pill ok">Built</span></div>
-        <h3>Back-check prioritisation model</h3>
-        <p>A cross-validated logistic regression learns which interview features predict a failed back-check and ranks the remaining interviews by risk, so field teams back-check where problems are most likely.</p>
-        <div class="tags"><span>Classification</span><span>Cross-validation</span><span>AUC</span></div>
-      </article>
-      <article class="case">
-        <div class="case-top"><span class="org">Working practice</span><span class="pill ok">Ongoing</span></div>
-        <h3>Verified AI-assisted analysis</h3>
-        <p>Use AI assistants to speed up questionnaire, cleaning and analysis work, then reconcile their outputs against each other and the literature before anything ships. On the Kitui data, comparing two AI-drafted humidex formulas led to choosing the Environment Canada dew-point method.</p>
-        <div class="tags"><span>LLM workflows</span><span>Method validation</span></div>
-      </article>
-    </div>
-  </section>
-
-  <section class="area" id="training" aria-labelledby="tr-h">
-    <div class="sec-head">
-      <span class="eyebrow">Training &amp; leadership</span>
-      <h2 id="tr-h">Building teams and data skills</h2>
-    </div>
-    <div class="work">
-      <article class="case">
-        <div class="case-top"><span class="org">Leadership</span></div>
-        <h3>Head of Research and Data Intelligence</h3>
-        <p>Lead CHASP Advisory's research and data function. Previously headed Dalberg Research's data processing unit across 60+ surveys in 20+ countries, and was technical lead for data analytics at ACDI/VOCA.</p>
-      </article>
-      <article class="case">
-        <div class="case-top"><span class="org">AIMS Ghana</span></div>
-        <h3>Storytelling with Data</h3>
-        <p>A five-day virtual course for AIMS students from across Africa, built around reading scripts and a capstone project on a financial-access dataset.</p>
-      </article>
-      <article class="case">
-        <div class="case-top"><span class="org">USAID RLA · county governments</span></div>
-        <h3>Analytics capacity building</h3>
-        <p>Trained county MEL teams and government staff in the Horn of Africa on resilience measurement, dashboard interpretation and using data for supervision and planning.</p>
-      </article>
-    </div>
-  </section>
 
   <section class="area" id="toolkit" aria-labelledby="tk-h">
     <div class="sec-head">
@@ -497,9 +523,15 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
     </div>
   </section>
 
+  </main>
+
   <footer>
-    <p class="muted">MSc Mathematical Statistics · Nairobi, Kenya</p>
-    <div class="contact-row"><span class="chip">fanuel.otieno88@gmail.com</span></div>
+    <div class="closing">
+      <h2>Working on survey data quality, evaluation or analytics?</h2>
+      <p class="muted">I am open to roles and projects in field data quality systems, statistical evaluation and analytics, and AI tools for survey data.</p>
+      <div class="contact-row"><a class="btn primary" href="mailto:fanuel.otieno88@gmail.com">Email me</a><span class="chip">fanuel.otieno88@gmail.com</span></div>
+    </div>
+    <p class="muted small-note">MSc Mathematical Statistics (Stellenbosch University) · MSc Mathematical Sciences (University of Cape Town) · Nairobi, Kenya</p>
   </footer>
 </div>
 
