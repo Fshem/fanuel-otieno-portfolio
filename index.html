@@ -190,6 +190,8 @@ main:focus { outline: none; }
 .shot figcaption { font-size: .8rem; color: var(--muted); }
 .closing { display: grid; gap: 10px; max-width: 70ch; }
 .closing h2 { font-size: 1.5rem; }
+.chart-panel { margin: 0; display: grid; gap: 6px; }
+.chart-panel svg { max-width: 640px; }
 footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; align-items: center; }
 
 @media (max-width: 960px) {
@@ -224,7 +226,7 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
       <span class="eyebrow">Data quality · Analytics · Data science · AI · Nairobi, Kenya</span>
       <h1>Fanuel Otieno</h1>
       <p class="role">Data quality, analytics and data science leader</p>
-      <p class="lede">I build the systems that make large field datasets trustworthy, then turn them into evidence: beneficiary registries, household surveys, routine health data and sensor data across Africa. Ten years of designing quality controls, statistical and machine learning models, and AI-assisted tools, leading the teams that run them, and explaining the results to governments and donors.</p>
+      <p class="lede">I build the systems that make large field datasets trustworthy, then turn them into evidence: beneficiary registries, household surveys, routine health data and mobile network data across Africa. Ten years of designing quality controls, statistical and machine learning models, and AI-assisted tools, leading the teams that run them, and explaining the results to governments and donors.</p>
       <div class="contact-row">
         <a class="btn primary" href="mailto:fanuel.otieno88@gmail.com">Email me</a>
         <a class="btn" href="#projects">View selected work</a>
@@ -246,11 +248,11 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
   <main id="main" tabindex="-1">
   <nav class="jump" aria-label="Portfolio sections">
     <a href="#projects">Selected projects</a>
+    <a href="#data-science">Data science &amp; ML</a>
     <a href="#data-quality">Data quality</a>
     <a href="#training">Leadership</a>
     <a href="#ai">AI applications</a>
     <a href="#analytics">Data analytics</a>
-    <a href="#data-science">Data science &amp; ML</a>
     <a href="#toolkit">Toolkit</a>
   </nav>
 
@@ -307,6 +309,77 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
         </div>
       </div>
     </article>
+  </section>
+
+  <section class="area" id="data-science" aria-labelledby="ds-h">
+    <div class="sec-head">
+      <span class="eyebrow">Data science &amp; machine learning</span>
+      <h2 id="ds-h">Segmentation, targeting and prediction</h2>
+      <p class="muted">Models built from survey, mobile network, financial and administrative data, several of them run by partner teams on their own systems.</p>
+    </div>
+    <div class="work">
+      <article class="case">
+        <div class="case-top"><span class="org">Dalberg Research · Ghana · 2021</span><span class="pill ok">Delivered</span></div>
+        <h3>Mobile network operator and insurer data: churn and customer personas</h3>
+        <p>For a development partnership on mobile insurance, joined two years of an insurer's policy records with six months of a mobile network operator's data (mobile money balances, data bundles, transaction counts and values, subscribed services) on the subscriber's phone number (MSISDN). Mobile money balance served as an income proxy. Duplicate subscriber numbers were removed before merging, customers were clustered (k-medoids, TwoStep) into personas checked against 54 interviews, churn drivers were tested with logistic regression and stepwise selection, and a random forest predicted churn at 3, 6 and 12 months, rebalanced because only about 10% of complete records were churners.</p>
+        <div class="tags"><span>MNO data</span><span>Mobile money</span><span>Random forest</span><span>Clustering</span></div>
+      </article>
+      <article class="case">
+        <div class="case-top"><span class="org">Dalberg Research · Gates Foundation</span><span class="pill ok">Public</span></div>
+        <h3>The Human Account</h3>
+        <p>A public resource on how people manage money, built from surveys of 11,500 respondents in India, Kenya, Myanmar, Nigeria, Pakistan and Tanzania, with 34 user segments. I managed data quality and analysis across the six national datasets.</p>
+        <div class="tags"><span>Multi-country surveys</span><span>Segmentation</span><span>Financial inclusion</span></div>
+        <div class="contact-row"><a class="btn small" href="https://www.thehumanaccount.com/" target="_blank" rel="noopener">thehumanaccount.com</a></div>
+      </article>
+      <article class="case">
+        <div class="case-top"><span class="org">Dalberg Research · six countries</span><span class="pill ok">Delivered</span></div>
+        <h3>Predicting customer segments from a 13-question SMS survey</h3>
+        <p>Built segment prediction models for six countries so financial service providers could place new customers into a segment without the full survey. For Kenya, variable reduction cut the questionnaire to 13 questions that work by SMS, and a LASSO model gives each respondent's probability of belonging to each of four segments (65.5% accuracy). Delivered as an R Shiny dashboard, with an implementation guide, R script and saved model that providers' own teams ran on their data.</p>
+        <div class="tags"><span>LASSO</span><span>Multiclass prediction</span><span>R Shiny</span><span>SMS surveys</span></div>
+      </article>
+      <article class="case">
+        <div class="case-top"><span class="org">Dalberg Research · Tulaa</span><span class="pill ok">Deployed · 15,000+ farmers scored</span></div>
+        <h3>Alternative credit scoring for smallholder farmers</h3>
+        <p>Designed and deployed a credit scoring model for farmers without formal credit histories, combining psychometric, behavioural and financial data, with automated real-time scoring in R served through the lender's platform.</p>
+        <div class="tags"><span>Classification</span><span>Credit risk</span><span>Model deployment</span></div>
+      </article>
+      <article class="case">
+        <div class="case-top"><span class="org">Shock response · Kenya ASAL</span><span class="pill ok">Delivered</span></div>
+        <h3>Flood shock-response targeting and beneficiary registration</h3>
+        <p>Allocated 10,207 cash-transfer households across the six Hunger Safety Net Programme (HSNP) counties in proportion to their 590,781 households, then ranked sub-counties with a weighted multi-criteria score: flood-affected households (70%) and global acute malnutrition rates (30%), using NDMA and nutrition survey reports where flood counts were missing. Led the registration of the selected beneficiaries.</p>
+        <div class="tags"><span>Targeting</span><span>Multi-criteria scoring</span><span>Sampling</span><span>Cash transfers</span></div>
+      </article>
+      <article class="case">
+        <div class="case-top"><span class="org">ACDI/VOCA · USAID RLA</span><span class="pill ok">2024–2025</span></div>
+        <h3>Flood and drought shock-response analytics with county governments</h3>
+        <p>Technical lead for data analytics with ASAL county governments, NDMA and IGAD: livestock, crop, pasture and market data turned into dashboards and decision tools for responding to floods and drought.</p>
+        <div class="tags"><span>Spatio-temporal data</span><span>Power BI</span><span>Decision support</span></div>
+      </article>
+      <article class="case">
+        <div class="case-top"><span class="org">CHASP Advisory</span><span class="pill ok">2026 · ongoing</span></div>
+        <h3>Controlled interrupted time series (CITS) for immunization</h3>
+        <p>Evaluating an immunization intensification strategy with KHIS monthly data, comparing four intervention counties with matched control counties chosen on urbanisation.</p>
+        <div class="tags"><span>Causal inference</span><span>CITS</span><span>Matched controls</span></div>
+      </article>
+      <article class="case">
+        <div class="case-top"><span class="org">CHASP Advisory · research</span><span class="pill ok">In progress</span></div>
+        <h3>Seasonality of maternal mortality and climate</h3>
+        <p>Research across 10 Kenyan counties linking 2013 to 2025 maternal deaths from KHIS with temperature, humidity and heat-index series, testing whether deaths cluster among the youngest and oldest mothers.</p>
+        <div class="tags"><span>Time series</span><span>Seasonality</span><span>Climate data</span></div>
+      </article>
+      <article class="case">
+        <div class="case-top"><span class="org">CHASP Advisory</span><span class="pill ok">Delivered</span></div>
+        <h3>Segmentation and risk stratification</h3>
+        <p>Predictive models, segmentation tools and geospatial analyses that help county health teams target supervision and resources.</p>
+        <div class="tags"><span>scikit-learn</span><span>Clustering</span><span>Geospatial</span></div>
+      </article>
+    </div>
+
+    <figure class="panel chart-panel">
+      <h3>Flood response: target households by county</h3>
+      <p class="muted small-note">10,207 households allocated in proportion to each county's household count, before sub-county ranking.</p>
+      <div class="chart-wrap"><svg viewBox="0 0 540 210" width="100%" role="img" aria-label="Target cash-transfer households by county: Mandera 2,610, Wajir 2,564, Garissa 1,575, Tana River 1,405, Samburu 1,163, Isiolo 890; total 10,207."><line x1="96.0" x2="96.0" y1="18" y2="204" stroke="var(--line)" stroke-dasharray="2 3"/><text x="96.0" y="12" text-anchor="middle">0</text><line x1="222.66666666666666" x2="222.66666666666666" y1="18" y2="204" stroke="var(--line)" stroke-dasharray="2 3"/><text x="222.66666666666666" y="12" text-anchor="middle">1,000</text><line x1="349.3333333333333" x2="349.3333333333333" y1="18" y2="204" stroke="var(--line)" stroke-dasharray="2 3"/><text x="349.3333333333333" y="12" text-anchor="middle">2,000</text><line x1="476.0" x2="476.0" y1="18" y2="204" stroke="var(--line)" stroke-dasharray="2 3"/><text x="476.0" y="12" text-anchor="middle">3,000</text><text x="88" y="38" text-anchor="end">Mandera</text><rect x="96" y="26" width="330.6" height="18" rx="3" fill="var(--accent)"/><text x="432.6" y="39">2,610</text><text x="88" y="68" text-anchor="end">Wajir</text><rect x="96" y="56" width="324.8" height="18" rx="3" fill="var(--accent)"/><text x="426.8" y="69">2,564</text><text x="88" y="98" text-anchor="end">Garissa</text><rect x="96" y="86" width="199.5" height="18" rx="3" fill="var(--accent)"/><text x="301.5" y="99">1,575</text><text x="88" y="128" text-anchor="end">Tana River</text><rect x="96" y="116" width="178.0" height="18" rx="3" fill="var(--accent)"/><text x="280.0" y="129">1,405</text><text x="88" y="158" text-anchor="end">Samburu</text><rect x="96" y="146" width="147.3" height="18" rx="3" fill="var(--accent)"/><text x="249.3" y="159">1,163</text><text x="88" y="188" text-anchor="end">Isiolo</text><rect x="96" y="176" width="112.7" height="18" rx="3" fill="var(--accent)"/><text x="214.7" y="189">890</text></svg></div>
+    </figure>
   </section>
 
   <section class="area" id="data-quality" aria-labelledby="dq-h">
@@ -395,7 +468,7 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
       <article class="case">
         <div class="case-top"><span class="org">Working practice</span></div>
         <h3>AI-assisted analysis, checked against documented methods</h3>
-        <p>I use AI assistants to speed up questionnaire, cleaning and analysis work, and check their output against published methods and reference calculations before it is used. On the Kitui data, an AI-drafted humidex formula used a different vapour-pressure route from the published one, so the values were recomputed with the Environment Canada dew-point method.</p>
+        <p>I use AI assistants to speed up questionnaire, cleaning and analysis work, and check their output against published methods and reference calculations before it is used.</p>
         <div class="tags"><span>LLM workflows</span><span>Method validation</span></div>
       </article>
     </div>
@@ -413,18 +486,6 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
         <h3>Post-distribution monitoring of a disability cash and care pilot</h3>
         <p>Designed the integrated household questionnaire and analysis plan, cleaned field data with a full cleaning log, and produced separate cash and non-cash reports across rounds, with Wilson confidence intervals and cross-cycle comparisons.</p>
         <div class="tags"><span>Survey design</span><span>Analysis plans</span><span>Open-text coding</span></div>
-      </article>
-      <article class="case">
-        <div class="case-top"><span class="org">Dalberg Research</span><span class="pill ok">Delivered</span></div>
-        <h3>Six-country financial inclusion study</h3>
-        <p>Managed data quality and analysis for 11,500 respondents across Nigeria, Kenya, Tanzania, Myanmar, India and Pakistan.</p>
-        <div class="tags"><span>Multi-country surveys</span><span>Data quality</span><span>Comparative analysis</span></div>
-      </article>
-      <article class="case">
-        <div class="case-top"><span class="org">ACDI/VOCA · USAID RLA</span><span class="pill ok">2024–2025</span></div>
-        <h3>Resilience and livestock analytics</h3>
-        <p>Technical lead for data analytics in the Horn of Africa: livestock, crop, pasture and market data turned into dashboards and decision tools for county governments, NDMA and IGAD.</p>
-        <div class="tags"><span>Power BI</span><span>Resilience measurement</span><span>Decision support</span></div>
       </article>
       <article class="case">
         <div class="case-top"><span class="org">CHASP Advisory</span><span class="pill ok">Ongoing</span></div>
@@ -447,67 +508,6 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
     </div>
   </section>
 
-  <section class="area" id="data-science" aria-labelledby="ds-h">
-    <div class="sec-head">
-      <span class="eyebrow">Data science &amp; machine learning</span>
-      <h2 id="ds-h">Models built for real decisions</h2>
-      <p class="muted">Predictive models, causal designs and time series work on messy, real-world African data.</p>
-    </div>
-    <div class="work">
-      <article class="case">
-        <div class="case-top"><span class="org">Dalberg Research · Tulaa</span><span class="pill ok">Deployed · 15,000+ farmers scored</span></div>
-        <h3>Credit scoring for smallholder farmers</h3>
-        <p>Designed and deployed a credit scoring model combining psychometric, behavioural and financial history data, with automated real-time scoring in R served through the lender's platform.</p>
-        <div class="tags"><span>Classification</span><span>Credit risk</span><span>Model deployment</span></div>
-      </article>
-      <article class="case">
-        <div class="case-top"><span class="org">CHASP Advisory</span><span class="pill ok">Ongoing</span></div>
-        <h3>Controlled interrupted time series (CITS) for immunization</h3>
-        <p>Evaluating an immunization intensification strategy with KHIS monthly data, comparing four intervention counties with matched control counties chosen on urbanisation.</p>
-        <div class="tags"><span>Causal inference</span><span>CITS</span><span>Matched controls</span></div>
-      </article>
-      <article class="case">
-        <div class="case-top"><span class="org">CHASP Advisory · research</span><span class="pill ok">In progress</span></div>
-        <h3>Seasonality of maternal mortality and climate</h3>
-        <p>Research across 10 Kenyan counties linking 2013 to 2025 maternal deaths from KHIS with temperature, humidity and heat-index series, testing whether deaths cluster among the youngest and oldest mothers.</p>
-        <div class="tags"><span>Time series</span><span>Seasonality</span><span>Climate data</span></div>
-      </article>
-      <article class="case">
-        <div class="case-top"><span class="org">Research · Kitui</span></div>
-        <h3>Heat stress from sensor loggers</h3>
-        <p>Processed four months of 30-minute readings from 20 iButton temperature and humidity loggers in Kitui and computed humidex with the Environment Canada dew-point method. Try the calculation below.</p>
-        <div class="tags"><span>Sensor data</span><span>Humidex</span><span>Environmental health</span></div>
-      </article>
-      <article class="case">
-        <div class="case-top"><span class="org">CHASP Advisory</span><span class="pill ok">Delivered</span></div>
-        <h3>Segmentation and risk stratification</h3>
-        <p>Predictive models, segmentation tools and geospatial analyses that help county health teams target supervision and resources.</p>
-        <div class="tags"><span>scikit-learn</span><span>Clustering</span><span>Geospatial</span></div>
-      </article>
-      <article class="case">
-        <div class="case-top"><span class="org">African Maths Initiative</span><span class="pill ok">2014–2015</span></div>
-        <h3>Climate data tools in R</h3>
-        <p>Built object-oriented R tools for manipulating and visualising climate data, used in statistics teaching with the University of Reading.</p>
-        <div class="tags"><span>R packages</span><span>OOP</span><span>Climate</span></div>
-      </article>
-    </div>
-
-    <div class="panel calc" aria-labelledby="hx-h">
-      <div class="calc-text">
-        <h3 id="hx-h">Humidex calculator</h3>
-        <p class="muted">The same method used on the Kitui logger data: dew point from temperature and relative humidity (Magnus formula), then the Environment Canada humidex formula (Masterton and Richardson, 1979). Comfort bands follow Environment Canada: under 30 little discomfort, 30–39 some discomfort, 40–45 great discomfort, 46 and over dangerous.</p>
-      </div>
-      <div class="calc-ctl">
-        <div class="ctl"><label for="hxT">Air temperature <output id="oT"></output></label><input type="range" id="hxT" min="15" max="45" step="0.5" value="33"></div>
-        <div class="ctl"><label for="hxH">Relative humidity <output id="oH"></output></label><input type="range" id="hxH" min="10" max="100" step="1" value="55"></div>
-      </div>
-      <div class="calc-out" aria-live="polite">
-        <span class="mono muted" id="hxDew"></span>
-        <span class="hx-val" id="hxVal"></span>
-        <span class="pill" id="hxBand"></span>
-      </div>
-    </div>
-  </section>
 
 
   <section class="area" id="toolkit" aria-labelledby="tk-h">
@@ -555,20 +555,7 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
 
   var $ = function (id) { return document.getElementById(id); };
 
-  /* ---------- Humidex (Environment Canada, dew-point route) ---------- */
-  function humidex() {
-    var T = +$("hxT").value, RH = +$("hxH").value;
-    var a = 17.62, b = 243.12, g = Math.log(RH / 100) + a * T / (b + T), Td = b * g / (a - g);
-    var e = 6.11 * Math.exp(5417.753 * (1 / 273.16 - 1 / (273.15 + Td)));
-    var H = T + 0.5555 * (e - 10);
-    $("oT").textContent = T.toFixed(1) + " °C"; $("oH").textContent = RH + "%";
-    $("hxDew").textContent = "dew point " + Td.toFixed(1) + " °C";
-    $("hxVal").textContent = H.toFixed(1);
-    var band = H < 30 ? ["ok", "Little or no discomfort"] : H < 40 ? ["warn", "Some discomfort"] : H < 46 ? ["bad", "Great discomfort, avoid exertion"] : ["bad", "Dangerous, heat stroke possible"];
-    var el = $("hxBand"); el.className = "pill " + band[0]; el.textContent = band[1];
-  }
-  ["hxT", "hxH"].forEach(function (id) { $(id).addEventListener("input", humidex); });
-  humidex();
+
 })();
 </script>
 
