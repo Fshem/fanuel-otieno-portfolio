@@ -190,6 +190,8 @@ main:focus { outline: none; }
 .shot figcaption { font-size: .8rem; color: var(--muted); }
 .closing { display: grid; gap: 10px; max-width: 70ch; }
 .closing h2 { font-size: 1.5rem; }
+.work.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 520px) { .work.cols-2 { grid-template-columns: minmax(0, 1fr); } }
 .chart-panel { margin: 0; display: grid; gap: 6px; }
 .chart-panel svg { max-width: 640px; }
 footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; align-items: center; }
@@ -327,14 +329,14 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
       <article class="case">
         <div class="case-top"><span class="org">Dalberg Research · Gates Foundation</span><span class="pill ok">Public</span></div>
         <h3>The Human Account</h3>
-        <p>A public resource on how people manage money, built from surveys of 11,500 respondents in India, Kenya, Myanmar, Nigeria, Pakistan and Tanzania, with 34 user segments. I managed data quality and analysis across the six national datasets.</p>
-        <div class="tags"><span>Multi-country surveys</span><span>Segmentation</span><span>Financial inclusion</span></div>
+        <p>A public resource on how underserved people manage money, built from surveys of 11,500 respondents in India, Kenya, Myanmar, Nigeria, Pakistan and Tanzania. I built the unsupervised machine learning segmentation of contextual, behavioural and psychological data into 34 user segments, and the segment profiles used for product and policy design.</p>
+        <div class="tags"><span>Unsupervised ML</span><span>34 segments</span><span>Financial inclusion</span></div>
         <div class="contact-row"><a class="btn small" href="https://www.thehumanaccount.com/" target="_blank" rel="noopener">thehumanaccount.com</a></div>
       </article>
       <article class="case">
         <div class="case-top"><span class="org">Dalberg Research · six countries</span><span class="pill ok">Delivered</span></div>
         <h3>Predicting customer segments from a 13-question SMS survey</h3>
-        <p>Built segment prediction models for six countries so financial service providers could place new customers into a segment without the full survey. For Kenya, variable reduction cut the questionnaire to 13 questions that work by SMS, and a LASSO model gives each respondent's probability of belonging to each of four segments (65.5% accuracy). Delivered as an R Shiny dashboard, with an implementation guide, R script and saved model that providers' own teams ran on their data.</p>
+        <p>Cut country questionnaires from 70–158 questions to 13–14 that work by SMS, so financial service providers can place new customers into a segment without the full survey. Country-specific LASSO models give each respondent's probability of belonging to each segment. The short versions cost 2.5–7.8 percentage points of accuracy (Kenya: 68% with 92 questions, 66% with 13); a 10-question version was rejected at 63%. Delivered as an R Shiny dashboard, with an implementation guide, R script and saved model that providers' own teams ran on their data.</p>
         <div class="tags"><span>LASSO</span><span>Multiclass prediction</span><span>R Shiny</span><span>SMS surveys</span></div>
       </article>
       <article class="case">
@@ -344,15 +346,21 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
         <div class="tags"><span>Classification</span><span>Credit risk</span><span>Model deployment</span></div>
       </article>
       <article class="case">
+        <div class="case-top"><span class="org">Dalberg Research</span><span class="pill ok">Delivered</span></div>
+        <h3>Credit risk scorecard tool</h3>
+        <p>Led development of an R Shiny tool covering the full scorecard process: data upload, exploration and sampling, Weight of Evidence binning and Information Value, logistic regression with multicollinearity checks (VIF), and score scaling by points to double the odds. Validation is built in with the KS statistic, Gini coefficient, accuracy and the Population Stability Index.</p>
+        <div class="tags"><span>WoE / IV</span><span>Logistic regression</span><span>KS, Gini, PSI</span><span>R Shiny</span></div>
+      </article>
+      <article class="case">
         <div class="case-top"><span class="org">Shock response · Kenya ASAL</span><span class="pill ok">Delivered</span></div>
         <h3>Flood shock-response targeting and beneficiary registration</h3>
-        <p>Allocated 10,207 cash-transfer households across the six Hunger Safety Net Programme (HSNP) counties in proportion to their 590,781 households, then ranked sub-counties with a weighted multi-criteria score: flood-affected households (70%) and global acute malnutrition rates (30%), using NDMA and nutrition survey reports where flood counts were missing. Led the registration of the selected beneficiaries.</p>
+        <p>Allocated 10,207 cash-transfer households across the six Hunger Safety Net Programme (HSNP) counties in proportion to their 590,781 households, then ranked sub-counties with a weighted multi-criteria score: flood-affected households (70%) and global acute malnutrition rates (30%), filling data gaps with county-level intelligence from the National Drought Management Authority (NDMA). Coordinated the registration of beneficiaries.</p>
         <div class="tags"><span>Targeting</span><span>Multi-criteria scoring</span><span>Sampling</span><span>Cash transfers</span></div>
       </article>
       <article class="case">
         <div class="case-top"><span class="org">ACDI/VOCA · USAID RLA</span><span class="pill ok">2024–2025</span></div>
         <h3>Flood and drought shock-response analytics with county governments</h3>
-        <p>Technical lead for data analytics with ASAL county governments, NDMA and IGAD: livestock, crop, pasture and market data turned into dashboards and decision tools for responding to floods and drought.</p>
+        <p>Technical lead for data analytics with ASAL county governments, NDMA and IGAD: modelled spatio-temporal trends in climate, food-security, livestock and emergency-response data for early warning, built decision-support dashboards, and trained county teams in data analysis and use for drought and flood response.</p>
         <div class="tags"><span>Spatio-temporal data</span><span>Power BI</span><span>Decision support</span></div>
       </article>
       <article class="case">
@@ -366,12 +374,6 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
         <h3>Seasonality of maternal mortality and climate</h3>
         <p>Research across 10 Kenyan counties linking 2013 to 2025 maternal deaths from KHIS with temperature, humidity and heat-index series, testing whether deaths cluster among the youngest and oldest mothers.</p>
         <div class="tags"><span>Time series</span><span>Seasonality</span><span>Climate data</span></div>
-      </article>
-      <article class="case">
-        <div class="case-top"><span class="org">CHASP Advisory</span><span class="pill ok">Delivered</span></div>
-        <h3>Segmentation and risk stratification</h3>
-        <p>Predictive models, segmentation tools and geospatial analyses that help county health teams target supervision and resources.</p>
-        <div class="tags"><span>scikit-learn</span><span>Clustering</span><span>Geospatial</span></div>
       </article>
     </div>
 
@@ -388,7 +390,7 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
       <h2 id="dq-h">Quality systems for field data at scale</h2>
       <p class="muted">Validation rules, high-frequency checks, back-checks and audits, deduplication and enumerator monitoring, built into pipelines that run as data arrives.</p>
     </div>
-    <div class="work">
+    <div class="work cols-2">
       <article class="case">
         <div class="case-top"><span class="org">CHASP Advisory</span><span class="pill ok">Delivered</span></div>
         <span class="fig">200,000+</span>
@@ -409,6 +411,13 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
         <h3>Universal QC system and R Shiny monitor</h3>
         <p>During fieldwork, data clerks spent about 8 hours a day reviewing incoming data. This reusable R system ran the checks on every interview automatically and fed an R Shiny dashboard, so clerks needed about 2 hours or less to confirm its output. Every flagged interview was confirmed with the enumerator or redone. Since extended with machine learning (see Survey QC Dashboard above).</p>
         <div class="tags"><span>R</span><span>Shiny</span><span>Automation</span></div>
+      </article>
+      <article class="case">
+        <div class="case-top"><span class="org">Kuza Jamii · economic inclusion</span><span class="pill ok">Delivered</span></div>
+        <span class="fig">Targeting</span>
+        <h3>Beneficiary eligibility verification</h3>
+        <p>Ran data quality checks on beneficiary records for an economic inclusion programme, verifying each household against the targeting criteria so that only qualifying households were enrolled.</p>
+        <div class="tags"><span>Targeting</span><span>Eligibility checks</span><span>Registry QC</span></div>
       </article>
     </div>
   </section>
@@ -518,8 +527,9 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
     <div class="toolkit">
       <div><h3>Collection</h3><p>SurveyCTO, ODK, KoboToolbox, Survey Solutions. Validation built into the form: constraints, skip logic, GPS and photo capture.</p></div>
       <div><h3>Pipelines</h3><p>SQL, Python, R and Stata: for example, SQL extracts from Kenya's Enhanced Single Registry. DHIS2, eCHIS and KHIS integration. High-frequency checks that run as data arrives.</p></div>
-      <div><h3>Verification</h3><p>Back-check and phone-verification sampling, re-interview audits, record linkage and deduplication, enumerator scorecards. Every flagged interview is confirmed with the enumerator or redone.</p></div>
+      <div><h3>Verification</h3><p>Validation where no ground truth exists: back-check and phone-verification sampling, re-interview audits, cross-source triangulation, record linkage and deduplication, enumerator scorecards. Every flagged interview is confirmed with the enumerator or redone.</p></div>
       <div><h3>Data protection</h3><p>Informed consent, data access limited to the project team, and a data protection policy for each project, in line with Kenya's Data Protection Act 2019.</p></div>
+      <div><h3>Modelling</h3><p>GLMs and causal inference; classification, segmentation and credit scorecards (WoE/IV, KS, Gini, PSI); explainable methods; spatio-temporal analysis in QGIS and R.</p></div>
       <div><h3>Leadership</h3><p>Built and led multi-country data teams. Set quality standards and SOPs. Briefs ministries, county governments, NDMA and IGAD.</p></div>
     </div>
   </section>
@@ -532,7 +542,7 @@ footer { border-top: 1px solid var(--line); padding-top: 28px; display: flex; ju
       <p class="muted">I am open to roles and projects in field data quality systems, statistical evaluation and analytics, and AI tools for survey data.</p>
       <div class="contact-row"><a class="btn primary" href="mailto:fanuel.otieno88@gmail.com">Email me</a><span class="chip">fanuel.otieno88@gmail.com</span></div>
     </div>
-    <p class="muted small-note">MSc Mathematical Statistics (Stellenbosch University) · MSc Mathematical Sciences (University of Cape Town) · Nairobi, Kenya</p>
+    <p class="muted small-note">MSc Mathematical Statistics, Stellenbosch University (2017) · MSc Mathematical Sciences, University of Cape Town (2014) · BSc Mathematics and Statistics, First Class Honours, Moi University (2012) · Nairobi, Kenya</p>
   </footer>
 </div>
 
